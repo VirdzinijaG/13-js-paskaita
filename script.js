@@ -48,6 +48,9 @@ class Automobilis {
     isveskMarke() {
         return "Automobilio marke" + this.marke;
     }
+    tevinisMetodas() {
+        return "tevinisMetodas is Automobilis"
+    }
 }
 
 
@@ -72,6 +75,9 @@ class Modelis extends Automobilis { // prie automobilio klases prikabinom modeli
         return this.isveskMarke() + " " + this.modelis + Modelis.automobilioAmzius(this.modelis); // isveskMarke yra is tevines klases
 
     }
+    tevinisMetodas() {
+        return "Galbut veikiantis  metodas" // perasytas metodas, kuris buvo aprasytas tevineje klaseje
+    }
 }
 
 let automobilis = new Automobilis("VW"); // new - pagal klase sukuria objekta
@@ -91,3 +97,63 @@ console.log(Modelis.automobilioAmzius(1994));
 
 // Kad nebutu per objekta pasiekiamas sis metodas, del saugumo, kad butu naudojamas tik klaseje
 // console.log(auto1.automobilioAmzius());
+
+console.log(auto1.tevinisMetodas()); // isveda antra varianta, nes buvo metodo perasimas
+console.log(automobilis.tevinisMetodas()); // isveda pirma varianta, kuris yra tevineje klaseje
+
+
+
+
+
+/////// Grupe su 5 mokiniais. Pritaikymas klasiu 
+
+class Grupe { // tevine klase
+    constructor (pavadinimas, trukme) {
+        this.pavadinimas = pavadinimas;
+        this.trukme = trukme;
+
+    }
+}
+
+class Mokinys extends Grupe { // vaikine klase // paveldimumas is tevines klases // Grupe klases papildymas
+    constructor(pavadinimas, trukme, vardas, pavarde, pazymiai, lankomumas) {
+        super(pavadinimas, trukme); // paveldima is tevines klases
+        this.vardas = vardas;
+        this.pavarde = pavarde;
+        this.pazymiai = pazymiai;
+        this.lankomumas = lankomumas;
+
+    }
+    informacija() { // metodas
+        // return "As esu" + this.vardas + "," + "is" + this.pavadinimas + "," + "mokausi" + this.trukme;
+        return `As esu ${this.vardas}, is ${this.pavadinimas}, mokausi ${this.trukme}`; // kitas uzrasymas $ vietoje +
+    }
+
+}
+
+class Mokytojas extends Grupe {
+    constructor(pavadinimas, trukme, vardas, pavarde) {
+        super(pavadinimas, trukme)
+        this.vardas = vardas;
+        this.pavarde = pavarde;
+    }
+}
+
+
+
+// i masyva talpinami visi mokiniai
+let grupe = [];
+let pazymiuMasyvas = [5, 4, 3, 1, 1, 1];
+let lankomumas = ["n", "x","n", "x","n", "x","n", "x"]
+
+
+grupe.push(new Mokinys("1 grupe", "1 metai", "Vardenis", "Pavardenis", pazymiuMasyvas, lankomumas)); // push - talpinimas i masyva
+grupe.push(new Mokinys("1 grupe", "1 metai", "Vardenis1", "Pavardenis1", pazymiuMasyvas, lankomumas));
+grupe.push(new Mokinys("1 grupe", "1 metai", "Vardenis2", "Pavardenis2", pazymiuMasyvas, lankomumas));
+grupe.push(new Mokinys("1 grupe", "1 metai", "Vardenis3", "Pavardenis3", pazymiuMasyvas, lankomumas));
+grupe.push(new Mokinys("1 grupe", "1 metai", "Vardenis4", "Pavardenis4", pazymiuMasyvas, lankomumas));
+grupe.push(new Mokytojas("1 grupe", "1 metai","Mokytojas", "Mokytojauskas"));
+
+console.log(grupe);
+
+
